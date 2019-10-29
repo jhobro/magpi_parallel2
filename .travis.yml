@@ -1,0 +1,9 @@
+language: python
+env:
+  - SCRIPT=mandelbrot_original.py
+  - SCRIPT=mandelbrot.py
+  - SCRIPT=mandelbrot_multi.py
+  - SCRIPT=mandelbrot_multi_bunched.py
+  - SCRIPT=mandelbrot_with_map.py
+install: pip install -r requirements.txt
+script: time python $SCRIPT
