@@ -1,3 +1,4 @@
+from os         import getenv
 from numpy      import linspace, reshape
 from matplotlib import pyplot
 
@@ -25,5 +26,6 @@ for y in Y:
 
 N = reshape(N, (nx,ny)) # change to rectangular array
 
-pyplot.imshow(N) # plot the image
-pyplot.show()
+if not getenv("CONTINUOUS_INTEGRATION"):
+    pyplot.imshow(N)  # plot the image
+    pyplot.show()

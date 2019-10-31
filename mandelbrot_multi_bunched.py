@@ -1,3 +1,4 @@
+from os              import getenv
 from numpy           import linspace, reshape
 from matplotlib      import pyplot
 from multiprocessing import Pool
@@ -16,7 +17,7 @@ def mandelbrot(z): # computation for one pixel
 
 def compute_all_x(y):
   Z = [complex(x,y) for x in X]
-  return map(mandelbrot,Z)
+  return list(map(mandelbrot,Z))
 
 X = linspace(xmin,xmax,nx) # lists of x and y
 Y = linspace(ymin,ymax,ny) # pixel co-ordinates
@@ -27,5 +28,6 @@ N = p.map(compute_all_x,Y)
 
 N = reshape(N, (nx,ny)) # change to rectangular array
 
-pyplot.imshow(N) # plot the image
-pyplot.show()
+if not getenv("CONTINUOUS_INTEGRATION"):
+    pyplot.imshow(N)  # plot the image
+    pyplot.show()
