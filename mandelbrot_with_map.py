@@ -19,7 +19,7 @@ Y = linspace(ymin,ymax,ny) # pixel co-ordinates
 
 # main loops
 Z = [complex(x,y) for y in Y for x in X]
-N = map(mandelbrot,Z)
+N = list(map(mandelbrot,Z))
 
 N = reshape(N, (nx,ny)) # change to rectangular array
 
